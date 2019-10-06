@@ -44,7 +44,7 @@ The flat oyster
 
 ## Analysis
 
-* R: the programming language for today
+### R: the programming language for today
 
 We are going to use the programming language R for the analysis and visualization. R is a programming language suited for statistical computing that has been developed by the scientific community and it is widely used for data analysis. 
 
@@ -63,7 +63,7 @@ user community. To install an R package, we have just to type:
 library("<the package's name>")
 ```
 
-* Packages needed for today's exercises
+### Packages needed for today's exercises
 
 There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages:
 ```
