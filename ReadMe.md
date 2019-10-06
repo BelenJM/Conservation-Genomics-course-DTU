@@ -44,7 +44,7 @@ The flat oyster
 
 ## Analysis
 
-* R: the programming language for today *
+* R: the programming language for today
 
 We are going to use the programming language R for the analysis and visualization. R is a programming language suited for statistical computing that has been developed by the scientific community and it is widely used for data analysis. 
 
@@ -63,7 +63,7 @@ user community. To install an R package, we have just to type:
 library("<the package's name>")
 ```
 
-* Packages needed for today's exercises *
+* Packages needed for today's exercises
 
 There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages:
 ```
@@ -77,7 +77,7 @@ install.packages("assertthat")
 require(tidyverse)
 ```
 
-* Loading the dataset *
+* Loading the dataset
 
 There are many ways to load a dataset in R. Because the file type is a VCF file, we'll use the vcfR package we just downloaded and loaded. To do this, we will introduce the path where you copied the dataset to your folder.
 ```
@@ -95,7 +95,7 @@ Pop_ID <- paste(pop[,1])
 data@pop <- as.factor(Pop_ID)
 ```
 
-* First look *
+* First look
 First, let's look how our data looks like. This is the first step when analysing a genomic dataset. Genomic datasets are quite large and therefore it is a bit difficult ("humanly impossible") to check each data one by one, by hand. That's why we write scripts and use functions, so we can automate the checks and the analysis.
 ```
 data
@@ -121,11 +121,11 @@ This command will show us several lines of information, to summarize all the dat
 ```
 What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes on 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
 
-* Filtering our dataset *
+* Filtering our dataset
 
 As a second step in a genomic analysis, we would need to filter the data. There are many ways of filtering a dataset, and it all depends what we are interested in. One thing to remember is that whatever we choose for filtering steps, we would need to report all the steps, so other scientists can replicate our analysis and understand why the results are the way they are. Some of the parameters that genomicists filter their data on is in the % of missing data, or minor allele frequencies. For the sake of simplicity, we won't be doing any filtering process for our exercises today, for two reasons: (1) the dataset is of very good quality and it has already been filtered for some parameters (see the original article for details), and (2) for the sake of simplicity for today's main key messages (and one can spend lots of time in filtering - and one should! Unfortunately it is not our priority for today).
 
-* Principal Component Analysis (PCA) *
+* Principal Component Analysis (PCA)
 
 For the principal component analysis (PCA), we will use the package adegenet which handles genlight objects very quickly. The following lines tells adegenet the type of analysis we want to use, and the number of axes that we want to take into account for the variation. 
 ```
@@ -157,7 +157,7 @@ snpsPC1_snp1_names_95 <- data$loc.names[c(invers_snp1_PC1_95)]
 
 Is there any special loci that seem to be driving the differentiation?
 
-* Degree of differentiation (Fst) *
+* Degree of differentiation (Fst)
 
 We will measure Fst with the package dartR. It will take a few minutes to run. 
 ```
