@@ -44,7 +44,7 @@ The flat oyster
 
 ## Analysis
 
-*R: the programming language for today*
+* R: the programming language for today *
 
 We are going to use the programming language R for the analysis and visualization. R is a programming language suited for statistical computing that has been developed by the scientific community and it is widely used for data analysis. 
 
@@ -63,7 +63,7 @@ user community. To install an R package, we have just to type:
 library("<the package's name>")
 ```
 
-*Packages needed for today's exercises*
+* Packages needed for today's exercises *
 
 There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages:
 ```
@@ -77,7 +77,7 @@ install.packages("assertthat")
 require(tidyverse)
 ```
 
-*Loading the dataset*
+* Loading the dataset *
 
 There are many ways to load a dataset in R. Because the file type is a VCF file, we'll use the vcfR package we just downloaded and loaded. To do this, we will introduce the path where you copied the dataset to your folder.
 ```
@@ -95,7 +95,7 @@ Pop_ID <- paste(pop[,1])
 data@pop <- as.factor(Pop_ID)
 ```
 
-*First look*
+* First look *
 First, let's look how our data looks like. This is the first step when analysing a genomic dataset. Genomic datasets are quite large and therefore it is a bit difficult ("humanly impossible") to check each data one by one, by hand. That's why we write scripts and use functions, so we can automate the checks and the analysis.
 ```
 data
@@ -125,5 +125,44 @@ What does this mean? The first row is telling us that the data file is a genligh
 
 As a second step in a genomic analysis, we would need to filter the data. There are many ways of filtering a dataset, and it all depends what we are interested in. One thing to remember is that whatever we choose for filtering steps, we would need to report all the steps, so other scientists can replicate our analysis and understand why the results are the way they are. Some of the parameters that genomicists filter their data on is in the % of missing data, or minor allele frequencies. For the sake of simplicity, we won't be doing any filtering process for our exercises today, for two reasons: (1) the dataset is of very good quality and it has already been filtered for some parameters (see the original article for details), and (2) for the sake of simplicity for today's main key messages (and one can spend lots of time in filtering - and one should! Unfortunately it is not our priority for today).
 
-* PCA *
+* Principal Component Analysis (PCA) *
 
+For the principal component analysis (PCA), we will use the package adegenet which handles genlight objects very quickly. The following lines tells adegenet the type of analysis we want to use, and the number of axes that we want to take into account for the variation. 
+```
+pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
+```
+It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). After the function has run, we will be asked how many axes we want. Let's say 5 for the moment (you can play with this parameter later when you have time).
+
+We will then visualize the plot with this:
+```
+myCol <- adegenet::colorplot(pca_genlight$scores,pca_genlight$scores, transp=TRUE, cex=4)
+abline(h=0,v=0, col="grey")
+add.scatter.eig(pca_genlight$eig[1:40],2,1,2, posi="topright", inset=.05, ratio=.3)
+scatter(pca_genlight, xax = 1, yax = 2, posi = "bottomleft", bg = "white",
+        ratio = 0.3, label = rownames(pca_genlight$scores))
+```
+Which populations do you see differentiated? Can you identify some populations that are less differentiated than others within themselves, and some others that are more differentiated? In other words, how many clusters do you see in this oyster population?
+
+Which loci seem to be driving the differenciation in the PCA? For looking into this, we can make a loading analysis.
+```
+selection_criteria_PC1_1 <- loadingplot(pca_genlight, axis=1)
+selection_criteria_PC1_2_95 <- quantile(selection_criteria_PC1_1$var.values, 0.99) #I also tested 0.95 and we can see the clear pattern of plots in PC1
+
+loadingplot(pca_genlight, at=NULL, threshold=selection_criteria_PC1_2_95, axis=1)
+alleles_1_contribPC1_95 <- loadingplot(pca_genlight, threshold=selection_criteria_PC1_2_95, lab.jitter=1, axis=1)
+head(alleles_1_contribPC1_95)
+invers_snp1_PC1_95 <- alleles_1_contribPC1_95$var.idx
+snpsPC1_snp1_names_95 <- data$loc.names[c(invers_snp1_PC1_95)]
+```
+
+Is there any special loci that seem to be driving the differentiation?
+
+* Degree of differentiation (Fst) *
+
+We will measure Fst with the package dartR. It will take a few minutes to run. 
+```
+fst_all <- dartR::gl.fst.pop(data,nboots = 1000)
+fst_all$Fsts
+fst_all$Pvalues
+```
+Remember that the Fst is a measure of how different a population is from another one. Which populations have the highest Fst between each other? And which ones have the lowest?
