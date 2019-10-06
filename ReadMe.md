@@ -64,6 +64,7 @@ library("<the package's name>")
 ```
 
 *Packages needed for today's exercises*
+
 There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages:
 ```
 install.packages("vcfR")
@@ -77,6 +78,7 @@ require(tidyverse)
 ```
 
 *Loading the dataset*
+
 There are many ways to load a dataset in R. Because the file type is a VCF file, we'll use the vcfR package we just downloaded and loaded. To do this, we will introduce the path where you copied the dataset to your folder.
 ```
 vcf <- read.vcfR("data/test_vcf.vcf")
@@ -85,7 +87,7 @@ We will convert it to a special format to analyse large genomic datasets, a "gen
 ```
 data <- vcfR2genlight(vcf)
 ```
-For following analysis, we need to prepare the dataset a little bit. This means, for example, that we need to extract the population name for each individual of the dataset and make it a factor. This is not really important right now (please, ask me if you want to know exactly what the following commands are doing). Otherwise, just type:
+For the following analysis, we need to prepare the dataset a little bit. This means, for example, that we need to extract the population name for each individual of the dataset and make it a factor. This is not really important right now (please, ask me if you want to know exactly what the following commands are doing). Otherwise, just type:
 ```
 Samples_names <- data@ind.names
 pop <- t(data.frame(str_split(Samples_names, "_", n=2)))
@@ -118,4 +120,10 @@ This command will show us several lines of information, to summarize all the dat
    @other: a list containing: elements without names 
 ```
 What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes on 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
+
+* Filtering our dataset *
+
+As a second step in a genomic analysis, we would need to filter the data. There are many ways of filtering a dataset, and it all depends what we are interested in. One thing to remember is that whatever we choose for filtering steps, we would need to report all the steps, so other scientists can replicate our analysis and understand why the results are the way they are. Some of the parameters that genomicists filter their data on is in the % of missing data, or minor allele frequencies. For the sake of simplicity, we won't be doing any filtering process for our exercises today, for two reasons: (1) the dataset is of very good quality and it has already been filtered for some parameters (see the original article for details), and (2) for the sake of simplicity for today's main key messages (and one can spend lots of time in filtering - and one should! Unfortunately it is not our priority for today).
+
+* PCA *
 
