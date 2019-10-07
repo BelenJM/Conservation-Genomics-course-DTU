@@ -7,7 +7,7 @@
 
 The lecture will consist on the following two parts, each with a theoretical and a practical part:
 - 8am - 10pm: Introduction to population genetics (theory + practical). Slides can be found [here](Slides_part1.pdf).
-- 10am - 12: Tools for conservation and management (theory + practical)
+- 10am - 12: Tools for conservation and management (theory + practical). Slides for this part can be found [here](Slides_part2.pdf).
 
 The lecture is thought as a dynamic session - so discussions and questions are encouraged! :)
 
@@ -131,8 +131,13 @@ cp /home/franb/EXERCICES/LECTURE06/* LECTURE06/Data/.
 
 *MOTIVATION*
 
-The flat oyster 
+Oysters are an important group of species due to their crucial role in ecosystems (they filter the water and also provide a substrate where other species live), and to their commercial value.  The Pacific oyster (Crassostrea gigas), originally from the Pacific coast of eastern Asia, was introduced in Europe in several occasions since the 60's. These introductions took place as follows:
+- Since the 60's, large quantity of seeds and adults from Japan and Canada (where they had been introduced in the 20's) were introduced to France and the Netherlands. This introductions also took place in UK, but at a much smaller scale (<100 individuals at a time).
+- UK hatcheries exported to Germany and Denmark, where they were bred in the wild.
+- French hatcheries exported to Spain, Italy and Portugal. Portuguese coasts had the presence of another species of oyster (C. angulata), with which the Pacific oyster ended up hybridating.
+- More recently, the Pacific oyster arrived to Sweden and Norway, possibly due to migration from Denmark, or human-induced translocated from UK hatcheries.
 
+After all these events of gene flow, bottlenecks and migration, what is the current status of the population of Pacific oyster in Europe? The following exercises will help us getting some insights.
 
 ![](map_Fig1.JPG)
 
