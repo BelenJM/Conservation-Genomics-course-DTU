@@ -99,7 +99,7 @@ ii) 200 generations
 - What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
 
-## Practical 2:
+## Practical 2: applying genomic tools to the study of an oyster population
 The data for practicals has been already downloaded and it is provided in '/home/EXERCICES/lecture6'.
 These instructions, including all relevant files and scripts, can be found at '/home/EXERCISES/lecture6'.
 In short, you don't have to worry about anything for the practicals.
