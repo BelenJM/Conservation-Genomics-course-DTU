@@ -202,11 +202,37 @@ And we can explore the indexes of those SNPs by looking into the recently create
 head(loci_contribPC1_99)
 ```
 
-What conclusions can you get?
+What conclusions do you get?
+
+### Genetic diversity measures
+
+We will calculate observed and expected Heterozygosity levels for the entire dataset. This is one of the crucial statistics to assess the evolutionary potential of a population and possible levels of inbreeding. Remember that the expected Heterozygosity is based on the theoretical prediction of Hardy-Weinberg equilibrium. 
+```
+stats <- gl.basic.stats(data, digits = 4)
+
+# plots:
+jpeg(filename = "hist_Fis.JPEG",
+     width = 600, height = 600, units="px", pointsize=12, quality=300)
+hist(stats$Fis, breaks=300)
+dev.off()
+
+jpeg(filename = "hist_Ho.JPEG",
+     width = 600, height = 600, units="px", pointsize=12, quality=300)
+hist(stats$Ho, breaks=300)
+dev.off()
+
+jpeg(filename = "hist_Hs.JPEG",
+     width = 600, height = 600, units="px", pointsize=12, quality=300)
+hist(stats$Hs, breaks=300)
+dev.off()
+
+# statistical test
+t.test(stats$Hs, stats$Ho, pair=T, var.equal = TRUE, alternative = "greater")
+```
 
 ### Degree of differentiation (Fst)
 
-We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. Let's first select a few populations to get familiar with Fst comparisons. Let's take the wild populations of Portugal and Plymouth (UK), and a hatchery population from UK.
+We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. Let's first select a few populations to get familiar with Fst comparisons. Let's take the wild populations of Portugal and Plymouth (UK), and a hatchery population from UK (Maldon).
 ```
 exer1 <- dartR::gl.keep.pop(data, c("Plymouth","Maldon","Faro"), recalc = TRUE, mono.rm = TRUE, v = 2)
 ```
