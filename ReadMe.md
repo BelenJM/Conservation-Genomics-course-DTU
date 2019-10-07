@@ -104,18 +104,18 @@ ii) 200 generations
 
 
 ## Practical 2: applying genomic tools to the study of an oyster population
-For this part you require the use of Computerome cluster (you are already familiar with it). The data for practicals has been already downloaded and it is provided in '/home/franb/EXERCICES/LECTURE06/'.
-If R is not working in the cluster, we have a plan B so you don't have to worry about anything for the practicals. If this is the case, see here for a short manual on instructions how to set up R and Rstudio in your laptop.
+For this part you require the use of Computerome cluster (you are already familiar with it), where we will be using the programming language R. If R is not working in the cluster, we have a plan B so you don't have to worry about anything for the practicals. If this is the case, see [here](installing_R) for a short manual on instructions how to set up R and Rstudio in your laptop.
 
 ### Data
 
-As an illustration, we will use a VCF file from the flat oyster, published in a recent article: Detailed insights into pan-European population structure and inbreeding in wild and hatchery Pacific oyster (Crassostrea gigas) populations revealed by genome-wide SNP data by [Vendrami et al. (2018)](https://onlinelibrary.wiley.com/doi/full/10.1111/eva.12736).
-We extracted the PED files from the [article's repository](https://datadryad.org/stash/dataset/doi:10.5061/dryad.6d778b6.), and we have already transformed it into a VCF file.
+As an illustration, we will use a genomic dataset of an oyster population, published in a recent article: Detailed insights into pan-European population structure and inbreeding in wild and hatchery Pacific oyster (Crassostrea gigas) populations revealed by genome-wide SNP data by [Vendrami et al. (2018)](https://onlinelibrary.wiley.com/doi/full/10.1111/eva.12736).
+We extracted the PED files from the [article's repository](https://datadryad.org/stash/dataset/doi:10.5061/dryad.6d778b6.), and transformed it into a VCF file, which is a format to store variation data. The data can be found in '/home/franb/EXERCICES/LECTURE06/'. We'll show you how to copy it into your own folder so you can follow the practical. We have also uploaded the dataset [here](test_vcf.vcf).
+
 The oyster data that we present here represents variation data from all over the genome generated with a SNP-chip. We will apply the tools we have seen throughout the lecture to this dataset to obtain insights for conservation/management in this population.
 
 ## Preparation
 
-First, create a folder where you will put all the results and some temporary data.
+First, create a folder where you will put the data and the results generated in each of the exercises.
 ```
 mkdir LECTURE06
 cd LECTURE06
@@ -135,11 +135,12 @@ The flat oyster
 
 
 ![](map_Fig1.JPG)
+
 ## Analysis
 
 ### R: the programming language for today
 
-We are going to use the programming language R for the analysis and visualization. R is a programming language suited for statistical computing that has been developed by the scientific community and it is widely used for data analysis. 
+As mentioned, we are going to use the programming language R for the analysis and visualization. R is a programming language suited for statistical computing that has been developed by the scientific community and it is widely used for data analysis. 
 
 We can call R from the terminal. We do this by simply using
 ```
