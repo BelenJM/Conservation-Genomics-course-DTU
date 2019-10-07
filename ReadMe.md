@@ -165,7 +165,7 @@ It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). Afte
 
 We will then visualize the plot with this:
 ```
-jpeg(filename = "PCA_oysters",
+jpeg(filename = "PCA_oysters.JPEG",
      width = 480, height = 480, units = "px", pointsize = 12,
      quality = 75)
 fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
