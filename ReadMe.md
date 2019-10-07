@@ -369,8 +369,6 @@ Go back to the website of the practical session 1 (https://www.radford.edu/~rshe
 	ii) 100 individuals
 	iii) 1000 individuals
 
-    Number of generations: 100
-    Number of populations: 3
-    Starting frequency of allele A1: 0.5
+    Number of generations: 100, Number of populations: 3, Starting frequency of allele A1: 0.5
 
 What would you think would be the minimum population size if one wants to start an oyster breeding program? And the maximum? Why? 
