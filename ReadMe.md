@@ -1,11 +1,15 @@
 # 25334 Genomic methods in breeding and management of aquatic living resources. 
 ## Lecture 6: Introduction to Population Genetics & tools for conservation and management
 ### Teachers: Romina Henriques & Belen Jimenez-Mena
+#### Date: Wednesday 09/10/2019
 
-Wednesday 09/10/2019
- - 8am - 10pm: Introduction to population genetics (theory + practical). Slides can be found [here](Slides_part1.pdf).
- - 10am - 12: Tools for conservation and management (theory + practical)
+## Schedule of the lecture:
 
+The lecture will consist on the following two parts, each with a theoretical and a practical part:
+- 8am - 10pm: Introduction to population genetics (theory + practical). Slides can be found [here](Slides_part1.pdf).
+- 10am - 12: Tools for conservation and management (theory + practical)
+
+The lecture is thought as a dynamic session - so discussions and questions are encouraged! :)
 
 ## Practical 1: The impact of micro-evolutionary processes in the history of populations
 
