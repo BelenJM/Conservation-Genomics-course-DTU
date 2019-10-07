@@ -30,7 +30,7 @@ mkdir Data
 ```
 You can make a copy of the dataset by using the following command in the terminal, from your directory.
 ```
-cp ... Data\.
+cp /home/franb/EXERCICES/LECTURE06/ Data/.
 ```
 That's it.
 
@@ -192,7 +192,7 @@ exer1_fst$Fsts
 exer1_fst$Pvalues
 ```
 
-Now, estimate Fst between the wild populations, including the original populations of Japan and Canada. What would you expect to see?
+Now, estimate Fst between the wild populations, including the original populations of Japan and Canada. What would you expect to see? Discuss this question among your peers after you type the following command (the analysis will take ~10 mins so go and grab a cup of coffee and discuss!).
 ```
 exer2 <- dartR::gl.keep.pop(data, c("Plymouth","BC","Faro", "Japan", "Norway", "Oosterschelde"), recalc = TRUE, mono.rm = TRUE, v = 2)
 exer2_fst <- dartR::gl.fst.pop(exer2,nboots = 1000)
