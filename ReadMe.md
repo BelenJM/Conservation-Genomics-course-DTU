@@ -363,7 +363,7 @@ exer3 <- dartR::gl.fst.pop(data,nboots = 1000)
 
 ### Effective population size
 
-Go back to the website of the practical session 1 () and simulate a hypothetical population of oysters. This time do not change anything but the population size. Do a screen shot of your simulations every time you change conditions:
+Go back to the website of the practical session 1 (https://www.radford.edu/~rsheehy/Gen_flash/popgen/) and simulate a hypothetical population of oysters. This time do not change anything but the population size. Do a screen shot of your simulations every time you change conditions:
 - How do the allele frequencies behave? Describe the rough frequencies with:
 	i)  10 individuals
 	ii) 100 individuals
