@@ -126,7 +126,7 @@ This command will show us several lines of information, to summarize all the dat
 ```
 What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 rows of genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes from 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
 
-You can have a look at the specific information of the populations here:
+You can have a look at the specific information of the populations [here](pop_info.txt)
 
 ### Filtering our dataset
 
