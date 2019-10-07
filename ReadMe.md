@@ -32,6 +32,7 @@ Do a screen shot of your simulations every time you change conditions
 - What are the evolutionary mechanisms at play? 
 
 ### 2. Add migration to the starting conditions:
+
 2.1. Add 5 migrants (m=0.01), and answer the following questions:
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - Give a rough estimate of the frequencies of the alleles A1 and A2 at the end of: 
@@ -39,22 +40,27 @@ Do a screen shot of your simulations every time you change conditions
 	ii) 200 generations (just click continue)
 - How does it compare with the frequencies estimated without migration, in question 1?
 - What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
+
 2.2. Change migration rate to 25 migrants (m=0.05)
 - What are the main differences?
 
 ### 3. Remove migration (m=0), but introduce fitness effects:
+
 3.1. The heterozygotes are highly disadvantageous (selection against the heterozygotes): 
 A1A1 = 1
 A1A2 = 0.05
 A2A2 = 1
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - What happens if the heterozygotes are only moderately disadvantageous (A1A2 = 0.85)?
+
 3.2. The alternative allele (A2) confers a fitness advantage:
 A1A1 = 0.75
 A1A2 = 0.85
 A2A2 = 1
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
+
 3.3. How do the two scenarios compare after 100 generations?
+
 3.4 What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
 ### 4. Remove fitness effects (all = 1), but introduce a change in the mutation rate of one of the alleles:
@@ -64,23 +70,29 @@ A1 => A2 = 0.05
 - What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
 ### 5. Remove mutation rates, and add a bottleneck effect:
+
 5.1. Simulate a bottleneck that lasted 25 generations, and led to the population dropping from 500 individuals to 300 (Start generation = 50, End generation = 75, Bottleneck size = 300):
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - How do the allelic frequencies behave? Describe the rough frequencies at:
 	i) 100 generations
 	ii) 200 generations
 	iii) 300 generations
+
 5.2. Simulate a bottleneck that lasted 100 generations, and led to the population dropping from 500 individuals to 150 (Start generation = 50, End generation = 150, Bottleneck size = 150):
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - How do the allelic frequencies behave? Describe the rough frequencies at:
 	i) 100 generations
 	ii) 200 generations
 	iii) 300 generations
+
 5.3. Compare the results with your colleagues? Are they all the same?
+
 5.4 What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
 ### 6. Now, let’s add multiple forces at the same time!
+
 6.1. The fitness of allele A1 is higher (A1A1 = 1; A1A2 = 0.95; A2A2=0.90), and there is little migration (m=0.005)
+
 6.2. The fitness of allele A1 is higher (A1A1 = 1; A1A2 = 0.95; A2A2=0.90), and there is large migration (m=0.1)
 - Describe what happens in each case at:
 i) 100 generations
