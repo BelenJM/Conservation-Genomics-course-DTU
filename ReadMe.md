@@ -58,9 +58,13 @@ We need a few packages in order to do the analysis. In R, appart from coding our
 install.packages("<the package's name>")
 ```
 R will then download the package from Internet. To load the package into your current session, you run:
-user community. To install an R package, we have just to type:
+user community. To load an R package you downloaded, we have just to type:
 ```
 library("<the package's name>")
+```
+or
+```
+require("<the package's name>")
 ```
 
 ### Packages needed for today's exercises
@@ -87,10 +91,12 @@ There are many ways to load a dataset in R. Because the file type is a VCF file,
 ```
 vcf <- read.vcfR("data/test_vcf.vcf")
 ```
-We will convert it to a special format to analyse large genomic datasets, a "genlight" object.
+We will convert it to a special format to analyse large genomic datasets, a "genlight" and "genind" objects. As a first step we just have to type:
 ```
 data <- vcfR2genlight(vcf)
 ```
+This will convert the dataset into the format we want and store it in an object called "data". You can use whatever name you want to store the data (with certain rules, e.g. no spaces in between words).
+
 For the following analysis, we need to prepare the dataset a little bit. This means, for example, that we need to extract the population name for each individual of the dataset and make it a factor. This is not really important right now (please, ask me if you want to know exactly what the following commands are doing). Otherwise, just type:
 ```
 Samples_names <- data@ind.names
@@ -101,11 +107,13 @@ data@pop <- as.factor(Pop_ID)
 
 ### First look
 
-First, let's look how our data looks like. This is the first step when analysing a genomic dataset. Genomic datasets are quite large and therefore it is a bit difficult ("humanly impossible") to check each data one by one, by hand. That's why we write scripts and use functions, so we can automate the checks and the analysis.
+First, let's look how our data looks like. This is the first step when analysing a genomic dataset. Genomic datasets are quite large and therefore it is a bit difficult ("humanly impossible") to check each data row one by one, by hand. That's why we write scripts and use functions, so we can automate the checks and the analysis. 
+
+By typing the name where we store the dataset (see earlier commands),
 ```
 data
 ```
-This command will show us several lines of information, to summarize all the dataset. 
+it will show us several lines of information, to summarize all the dataset. Basically we will be able to see a summary of what is inside "data". 
 ```
 > data
   /// GENLIGHT OBJECT /////////
@@ -124,13 +132,13 @@ This command will show us several lines of information, to summarize all the dat
    @pop: population of each individual (group size range: 6-12)
    @other: a list containing: elements without names 
 ```
-What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 rows of genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes from 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
+What does all this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 rows of genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes from 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
 
-You can have a look at the specific information of the populations [here](pop_info.txt)
+The dataset we are working on consists on 232 individuals sampled from 23 populations all over Europe, Japan and Canada. You can have a look at the specific information of the populations [here](pop_info.txt)
 
 ### Filtering our dataset
 
-As a second step in a genomic analysis, we would need to filter the data. There are many ways of filtering a dataset, and it all depends what we are interested in. One thing to remember is that whatever we choose for filtering steps, we would need to report all the steps, so other scientists can replicate our analysis and understand why the results are the way they are. Some of the parameters that genomicists filter their data on is in the % of missing data, or minor allele frequencies. For the sake of simplicity, we won't be doing any filtering process for our exercises today, for two reasons: (1) the dataset is of very good quality and it has already been filtered for some parameters (see the original article for details), and (2) for the sake of simplicity for today's main key messages (and one can spend lots of time in filtering - and one should! Unfortunately it is not our priority for today).
+As a second step in a population genetics/genomic analysis, we would need to filter the SNP-data. There are many ways of filtering a dataset, and it all depends what we are interested in. One thing to remember is that whatever we choose for filtering steps, we would need to report all the steps, so other scientists can replicate our analysis and understand why the results are the way they are. Some of the parameters that genomicists filter their data on is in the % of missing data, or minor allele frequencies. For the sake of simplicity, we won't be doing any filtering process for our exercises today, for two reasons: (1) the dataset has already been filtered (see the original article for details), and (2) for simplicity (one can spend lots of time in filtering - and one should!). Of course you are very welcome to try different filters at home.
 
 ### Principal Component Analysis (PCA)
 
@@ -152,26 +160,40 @@ How do you see the distribution of populations in the plot: are all populations 
 
 Which loci seem to be driving the differenciation in the PCA? For looking into this, we can make a loading analysis.
 ```
+pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
 selection_criteria_PC1_1 <- loadingplot(pca_genlight, axis=1)
-selection_criteria_PC1_2_95 <- quantile(selection_criteria_PC1_1$var.values, 0.99) #I also tested 0.95 and we can see the clear pattern of plots in PC1
+```
+At a first glance in your opinion, is there any special loci that seem to be driving the differentiation? 
 
-loadingplot(pca_genlight, at=NULL, threshold=selection_criteria_PC1_2_95, axis=1)
-alleles_1_contribPC1_95 <- loadingplot(pca_genlight, threshold=selection_criteria_PC1_2_95, lab.jitter=1, axis=1)
+We can explore the SNPs that seem to be contributing the most to the differentiation in the PCA. For example, let's identify the SNPs that are over 1% of the quantile:
+```
+selection_criteria_PCA_99 <- quantile(selection_criteria_PC1_1$var.values, 0.99) 
+loadingplot(pca_genlight, at=NULL, threshold=selection_criteria_PC1A_99, axis=1)
+loci_contribPC1_99 <- loadingplot(pca_genlight, threshold=selection_criteria_PCA_99, lab.jitter=1, axis=1)
+```
+And we can explore the indexes of those SNPs by looking into the recently created "loci_contribPC1_99", by looking inside the dataset:
+```
 head(alleles_1_contribPC1_95)
-invers_snp1_PC1_95 <- alleles_1_contribPC1_95$var.idx
-snpsPC1_snp1_names_95 <- data$loc.names[c(invers_snp1_PC1_95)]
 ```
 
-Is there any special loci that seem to be driving the differentiation?
+What conclusions can you get?
 
 ### Degree of differentiation (Fst)
 
-We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. For the sake of time, we will select a few populations to do this analysis.
+We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. Let's first select a few populations to get familiar with Fst comparisons. Let's take the wild populations of Portugal and Plymouth (UK), and a hatchery population from UK.
 ```
-NW_DK_fst <- dartR::gl.keep.pop(data, c("Norway","Ldk"), recalc = TRUE, mono.rm = TRUE, v = 2)
+exer1 <- dartR::gl.keep.pop(data, c("Plymouth","Maldon","Faro"), recalc = TRUE, mono.rm = TRUE, v = 2)
+```
+First, what would you expect to see? Remember that the Fst is a measure of how different a population is from another one.
+When you are ready to check your expectations, you can type the following command lines to estimate Fst:
+```
+exer1_fst <- dartR::gl.fst.pop(exer1,nboots = 1000)
+exer1_fst$Fsts
+exer1_fst$Pvalues
+```
+Now, try with the whole dataset, where you will test each population with the rest of the dataset. First, think of what you would expect to find: which populations in your opinion should have the highest Fst between each other? And which ones have the lowest? Discuss with your peers.
 
-fst_all <- dartR::gl.fst.pop(data,nboots = 1000)
-fst_all$Fsts
-fst_all$Pvalues
+When you are ready, you can click the following and go for a cup of coffee while you wait (it will take around 10 minutes to run).
 ```
-Remember that the Fst is a measure of how different a population is from another one. Which populations have the highest Fst between each other? And which ones have the lowest?
+exer2 <- dartR::gl.fst.pop(data,nboots = 1000)
+```
