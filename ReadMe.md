@@ -120,7 +120,7 @@ This command will show us several lines of information, to summarize all the dat
    @pop: population of each individual (group size range: 6-12)
    @other: a list containing: elements without names 
 ```
-What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes on 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
+What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 rows of genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes from 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
 
 ### Filtering our dataset
 
@@ -128,7 +128,7 @@ As a second step in a genomic analysis, we would need to filter the data. There 
 
 ### Principal Component Analysis (PCA)
 
-For the principal component analysis (PCA), we will use the package adegenet which handles genlight objects very quickly. The following lines tells adegenet the type of analysis we want to use, and the number of axes that we want to take into account for the variation. 
+We will perform a principal component analysis (PCA) where we will visualize the population structure at an individual level. For the principal component analysis (PCA), we will use the package adegenet which handles genlight objects very quickly. The following lines tells adegenet the type of analysis we want to use, and the number of axes that we want to take into account for the variation. 
 ```
 pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
 ```
@@ -142,7 +142,7 @@ add.scatter.eig(pca_genlight$eig[1:40],2,1,2, posi="topright", inset=.05, ratio=
 scatter(pca_genlight, xax = 1, yax = 2, posi = "bottomleft", bg = "white",
         ratio = 0.3, label = rownames(pca_genlight$scores))
 ```
-Which populations do you see differentiated? Can you identify some populations that are less differentiated than others within themselves, and some others that are more differentiated? In other words, how many clusters do you see in this oyster population?
+How do you see the distribution of populations in the plot: are all populations clustered together in the same area, or some are further appart? How many clusters do you see in this oyster population? Discuss among your peers.
 
 Which loci seem to be driving the differenciation in the PCA? For looking into this, we can make a loading analysis.
 ```
@@ -160,8 +160,10 @@ Is there any special loci that seem to be driving the differentiation?
 
 ### Degree of differentiation (Fst)
 
-We will measure Fst with the package dartR. It will take a few minutes to run. 
+We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. For the sake of time, we will select a few populations to do this analysis.
 ```
+NW_DK_fst <- dartR::gl.keep.pop(data, c("Norway","Ldk"), recalc = TRUE, mono.rm = TRUE, v = 2)
+
 fst_all <- dartR::gl.fst.pop(data,nboots = 1000)
 fst_all$Fsts
 fst_all$Pvalues
