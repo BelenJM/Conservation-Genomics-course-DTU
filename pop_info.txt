@@ -1,3 +1,5 @@
+# Column names: PopulationName, Country, Origin
+
 Bangor	UK	Hatchery
 BC	Canada	Wild
 Brest	France	Wild
