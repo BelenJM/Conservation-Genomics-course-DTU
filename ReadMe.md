@@ -3,12 +3,9 @@
 ### Teachers: Romina Henriques & Belen Jimenez-Mena
 
 Wednesday 09/10/2019
- - 8am - 10pm: Introduction to population genetics (theory + practical)
+ - 8am - 10pm: Introduction to population genetics (theory + practical). Slides can be found [here](Slides_part1.pdf).
  - 10am - 12: Tools for conservation and management (theory + practical)
 
-## Material
-
-Slides can be found [here](https://github.com/belenjm/).
 
 ## Practical 1: The impact of micro-evolutionary processes in the history of populations
 
