@@ -360,3 +360,17 @@ When you are ready, you can click the following and go for a cup of coffee/make 
 ```
 exer3 <- dartR::gl.fst.pop(data,nboots = 1000)
 ```
+
+### Effective population size
+
+Go back to the website of the practical session 1 () and simulate a hypothetical population of oysters. This time do not change anything but the population size. Do a screen shot of your simulations every time you change conditions:
+- How do the allele frequencies behave? Describe the rough frequencies with:
+	i)  10 individuals
+	ii) 100 individuals
+	iii) 1000 individuals
+
+    Number of generations: 100
+    Number of populations: 3
+    Starting frequency of allele A1: 0.5
+
+What would you think would be the minimum population size if one wants to start an oyster breeding program? And the maximum? Why? 
