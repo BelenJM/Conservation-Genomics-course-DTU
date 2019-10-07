@@ -1,0 +1,18 @@
+# How to install R in your laptop
+## Information extracted from: https://courses.edx.org/courses/UTAustinX/UT.7.01x/3T2014/56c5437b88fa43cf828bff5371c6a924/)
+
+### To Install R:
+
+- Open an internet browser and go to www.r-project.org.
+- Click the "download R" link in the middle of the page under "Getting Started."
+- Select a CRAN location (a mirror site) and click the corresponding link.  
+- Click on the "Download R for Windows" link at the top of the page.  
+- Click on the "install R for the first time" link at the top of the page.
+- Click "Download R for Windows" and save the executable file somewhere on your computer.  Run the .exe file and follow the installation instructions.  
+- Now that R is installed, you need to download and install RStudio. 
+
+### To Install RStudio
+
+- Go to www.rstudio.com and click on the "Download RStudio" button.
+- Click on "Download RStudio Desktop."
+- Click on the version recommended for your system, or the latest Windows version, and save the executable file.  Run the .exe file and follow the installation instructions.     
