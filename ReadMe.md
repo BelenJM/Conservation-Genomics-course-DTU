@@ -189,12 +189,17 @@ At a first glance in your opinion, is there any special loci that seem to be dri
 We can explore the SNPs that seem to be contributing the most to the differentiation in the PCA. For example, let's identify the SNPs that are over 1% of the quantile:
 ```
 selection_criteria_PCA_99 <- quantile(selection_criteria_PC1_1$var.values, 0.99) 
-loadingplot(pca_genlight, at=NULL, threshold=selection_criteria_PC1A_99, axis=1)
 loci_contribPC1_99 <- loadingplot(pca_genlight, threshold=selection_criteria_PCA_99, lab.jitter=1, axis=1)
+
+# to save and see the plot
+jpeg(filename = "oysters_loadingPlot_1percent.JPEG",
+     width = 600, height = 600, units="px", pointsize=12, quality=300)
+loci_contribPC1_99
+dev.off()
 ```
 And we can explore the indexes of those SNPs by looking into the recently created "loci_contribPC1_99", by looking inside the dataset:
 ```
-head(alleles_1_contribPC1_95)
+head(loci_contribPC1_99)
 ```
 
 What conclusions can you get?
