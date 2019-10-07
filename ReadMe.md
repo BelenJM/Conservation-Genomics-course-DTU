@@ -75,6 +75,10 @@ install.packages("dartR")
 require(dartR)
 install.packages("assertthat")
 require(tidyverse)
+install.packages("devtools")
+require("devtools")
+install_github("kassambara/factoextra")
+require("factoextra")
 ```
 
 ### Loading the dataset
@@ -122,25 +126,27 @@ This command will show us several lines of information, to summarize all the dat
 ```
 What does this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 rows of genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes from 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
 
+You can have a look at the specific information of the populations here:
+
 ### Filtering our dataset
 
 As a second step in a genomic analysis, we would need to filter the data. There are many ways of filtering a dataset, and it all depends what we are interested in. One thing to remember is that whatever we choose for filtering steps, we would need to report all the steps, so other scientists can replicate our analysis and understand why the results are the way they are. Some of the parameters that genomicists filter their data on is in the % of missing data, or minor allele frequencies. For the sake of simplicity, we won't be doing any filtering process for our exercises today, for two reasons: (1) the dataset is of very good quality and it has already been filtered for some parameters (see the original article for details), and (2) for the sake of simplicity for today's main key messages (and one can spend lots of time in filtering - and one should! Unfortunately it is not our priority for today).
 
 ### Principal Component Analysis (PCA)
 
-We will perform a principal component analysis (PCA) where we will visualize the population structure at an individual level. For the principal component analysis (PCA), we will use the package adegenet which handles genlight objects very quickly. The following lines tells adegenet the type of analysis we want to use, and the number of axes that we want to take into account for the variation. 
+We will perform a principal component analysis (PCA) where we will visualize the population structure at an individual level. For the principal component analysis (PCA), we will use some functions that handles genomic objects very "quickly". 
 ```
-pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
+genine_inv <- gl2gi(data, v = 1) # transforms genlight to genind to do a cooler PCA plot
+adeg_pca <- scaleGen(genine_inv, NA.method="mean",scale=F)
+pca.adeg_pca <- dudi.pca(adeg_pca, scale=F, nf = 10,scannf = F)
 ```
-It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). After the function has run, we will be asked how many axes we want. Let's say 5 for the moment (you can play with this parameter later when you have time).
+It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). After the function has run, we will be asked how many axes we want. 
 
 We will then visualize the plot with this:
 ```
-myCol <- adegenet::colorplot(pca_genlight$scores,pca_genlight$scores, transp=TRUE, cex=4)
-abline(h=0,v=0, col="grey")
-add.scatter.eig(pca_genlight$eig[1:40],2,1,2, posi="topright", inset=.05, ratio=.3)
-scatter(pca_genlight, xax = 1, yax = 2, posi = "bottomleft", bg = "white",
-        ratio = 0.3, label = rownames(pca_genlight$scores))
+pca_oysters <- fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
+                     legend.title ="Populations",mean.point=F,pointsize=3, title="PCA - oysters")
+                     
 ```
 How do you see the distribution of populations in the plot: are all populations clustered together in the same area, or some are further appart? How many clusters do you see in this oyster population? Discuss among your peers.
 
