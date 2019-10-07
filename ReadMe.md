@@ -191,9 +191,20 @@ exer1_fst <- dartR::gl.fst.pop(exer1,nboots = 1000)
 exer1_fst$Fsts
 exer1_fst$Pvalues
 ```
-Now, try with the whole dataset, where you will test each population with the rest of the dataset. First, think of what you would expect to find: which populations in your opinion should have the highest Fst between each other? And which ones have the lowest? Discuss with your peers.
 
-When you are ready, you can click the following and go for a cup of coffee while you wait (it will take around 10 minutes to run).
+Now, estimate Fst between the wild populations, including the original populations of Japan and Canada. What would you expect to see?
 ```
-exer2 <- dartR::gl.fst.pop(data,nboots = 1000)
+exer2 <- dartR::gl.keep.pop(data, c("Plymouth","BC","Faro", "Japan", "Norway", "Oosterschelde"), recalc = TRUE, mono.rm = TRUE, v = 2)
+exer2_fst <- dartR::gl.fst.pop(exer2,nboots = 1000)
+exer2_fst$Fsts
+exer2_fst$Pvalues
+```
+What genetic processes could have made that these populations are different from each other?
+
+
+As a final exercise at home, try with the whole dataset, where you will test each population with the rest of the dataset. First, think of what you would expect to find: which populations in your opinion should have the highest Fst between each other? And which ones have the lowest? Discuss with your peers.
+
+When you are ready, you can click the following and go for a cup of coffee/make dinner while you wait (it will take some time to run! - you can really get a feeling on what dealing with genomic datasets is all about ;) ).
+```
+exer3 <- dartR::gl.fst.pop(data,nboots = 1000)
 ```
