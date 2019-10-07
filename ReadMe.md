@@ -17,13 +17,13 @@ https://www.radford.edu/~rsheehy/Gen_flash/popgen/
 Make sure you have FLASH installed in your web browser
 
 Starting conditions of a hypothetical population – these do not change throughout the exercise:
-*Population Size: 500
-*Number of generations: 100
-*Number of populations: 3
-*Starting frequency of allele A1: 0.75
+- Population Size: 500
+- Number of generations: 100
+- Number of populations: 3
+- Starting frequency of allele A1: 0.75
 Do a screen shot of your simulations every time you change conditions
 
-# 1. Start the simulations with only the starting conditions, and answer the following questions:
+### 1. Start the simulations with only the starting conditions, and answer the following questions:
 *Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - Give a rough estimate of the frequencies of the alleles A1 and A2 at the end of: 
 	i) 100 generations
@@ -31,7 +31,7 @@ Do a screen shot of your simulations every time you change conditions
 - How did the allelic frequencies change from the starting condition? Compare with your colleagues.
 - What are the evolutionary mechanisms at play? 
 
-2. Add migration to the starting conditions:
+### 2. Add migration to the starting conditions:
 2.1. Add 5 migrants (m=0.01), and answer the following questions:
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - Give a rough estimate of the frequencies of the alleles A1 and A2 at the end of: 
@@ -42,7 +42,7 @@ Do a screen shot of your simulations every time you change conditions
 2.2. Change migration rate to 25 migrants (m=0.05)
 - What are the main differences?
 
-3. Remove migration (m=0), but introduce fitness effects:
+### 3. Remove migration (m=0), but introduce fitness effects:
 3.1. The heterozygotes are highly disadvantageous (selection against the heterozygotes): 
 A1A1 = 1
 A1A2 = 0.05
@@ -57,13 +57,13 @@ A2A2 = 1
 3.3. How do the two scenarios compare after 100 generations?
 3.4 What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
-4. Remove fitness effects (all = 1), but introduce a change in the mutation rate of one of the alleles:
+### 4. Remove fitness effects (all = 1), but introduce a change in the mutation rate of one of the alleles:
 A1 => A2 = 0.05
 - Describe the effects of changing the mutation rate. Is it the same in all populations? Compare with your colleagues.
 - How many generations until one of the alleles is lost?
 - What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
-5. Remove mutation rates, and add a bottleneck effect:
+### 5. Remove mutation rates, and add a bottleneck effect:
 5.1. Simulate a bottleneck that lasted 25 generations, and led to the population dropping from 500 individuals to 300 (Start generation = 50, End generation = 75, Bottleneck size = 300):
 - Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - How do the allelic frequencies behave? Describe the rough frequencies at:
@@ -79,7 +79,7 @@ A1 => A2 = 0.05
 5.3. Compare the results with your colleagues? Are they all the same?
 5.4 What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
 
-6. Now, let’s add multiple forces at the same time!
+### 6. Now, let’s add multiple forces at the same time!
 6.1. The fitness of allele A1 is higher (A1A1 = 1; A1A2 = 0.95; A2A2=0.90), and there is little migration (m=0.005)
 6.2. The fitness of allele A1 is higher (A1A1 = 1; A1A2 = 0.95; A2A2=0.90), and there is large migration (m=0.1)
 - Describe what happens in each case at:
