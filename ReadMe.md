@@ -166,8 +166,7 @@ It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). Afte
 We will then visualize the plot with this:
 ```
 jpeg(filename = "PCA_oysters.JPEG",
-     width = 480, height = 480, units = "px", pointsize = 12,
-     quality = 75)
+     width = 600, height = 600, units="px", pointsize=12, quality=300)
 fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
                      legend.title ="Populations",mean.point=F,pointsize=3, title="PCA - oysters")
 dev.off()
@@ -178,6 +177,12 @@ Which loci seem to be driving the differenciation in the PCA? For looking into t
 ```
 pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
 selection_criteria_PC1_1 <- loadingplot(pca_genlight, axis=1)
+
+# to save and see the plot:
+jpeg(filename = "oysters_loadingPlot.JPEG",
+     width = 600, height = 600, units="px", pointsize=12, quality=300)
+selection_criteria_PC1_1
+dev.off()
 ```
 At a first glance in your opinion, is there any special loci that seem to be driving the differentiation? 
 
