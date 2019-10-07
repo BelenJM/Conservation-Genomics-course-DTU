@@ -21,6 +21,3 @@ Plymouth	UK	Wild
 SeaSalter	UK	Hatchery
 Sylt	Germany	Wild
 Texel	Netherlands	Wild	
-
-
-
