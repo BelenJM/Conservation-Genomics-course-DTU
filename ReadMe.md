@@ -25,12 +25,14 @@ The oyster data represents a SNP-chip from variation all over the genome.
 We'll be making some exercises on this dataset to study how we can give some insights for conservation/management in this population.
 However, before doing anything else, please create a folder where you will put all the results and some temporary data.
 ```
+mkdir LECTURE06
+cd LECTURE06
 mkdir Results
 mkdir Data
 ```
 You can make a copy of the dataset by using the following command in the terminal, from your directory.
 ```
-cp /home/franb/EXERCICES/LECTURE06/ Data/.
+cp /home/franb/EXERCICES/LECTURE06/* LECTURE06/Data/.
 ```
 That's it.
 
@@ -52,8 +54,13 @@ We can call R from the terminal. We do this by simply using
 ```
 R
 ```
+If you want to exit R, you just have to type:
+```
+q()
+```
+and decide whether you want to save or not your session.
 
-We need a few packages in order to do the analysis. In R, appart from coding our own functions and programs, we can download packages and use the functions that have been developed and saved there. This is one of the advantages of using R, its active user community. To install an R package, we have just to type (remember to call R before, aka. the previous command, otherwise, the following commands won't work in the BASH terminal):
+OK. Once you are inside R, we need a few packages in order to do the analysis. In R, appart from coding our own functions and programs, we can download packages and use the functions that have been developed and saved there. This is one of the advantages of using R, its active user community that helps us not re-invent the wheel. To install an R package, we have just to type (remember to call R before, aka. the previous command, otherwise, the following commands won't work in the BASH terminal):
 ```
 install.packages("<the package's name>")
 ```
@@ -77,7 +84,9 @@ install.packages("adegenet")
 require(adegenet)
 install.packages("dartR")
 require(dartR)
-install.packages("assertthat")
+install.packages("asserthat")
+require(asserthat)
+install.packages("tidyverse")
 require(tidyverse)
 install.packages("devtools")
 require("devtools")
@@ -89,7 +98,7 @@ require("factoextra")
 
 There are many ways to load a dataset in R. Because the file type is a VCF file, we'll use the vcfR package we just downloaded and loaded. To do this, we will introduce the path where you copied the dataset to your folder.
 ```
-vcf <- read.vcfR("data/test_vcf.vcf")
+vcf <- read.vcfR("LECTURE06/Data/test_vcf.vcf")
 ```
 We will convert it to a special format to analyse large genomic datasets, a "genlight" and "genind" objects. As a first step we just have to type:
 ```
@@ -97,7 +106,7 @@ data <- vcfR2genlight(vcf)
 ```
 This will convert the dataset into the format we want and store it in an object called "data". You can use whatever name you want to store the data (with certain rules, e.g. no spaces in between words).
 
-For the following analysis, we need to prepare the dataset a little bit. This means, for example, that we need to extract the population name for each individual of the dataset and make it a factor. This is not really important right now (please, ask me if you want to know exactly what the following commands are doing). Otherwise, just type:
+For the following analysis, we need to prepare the dataset a little bit. This means, for example, that we need to extract the population name for each individual of the dataset and make it a factor. This is not really important right now (please, ask us if you want to know exactly what the following commands are doing). Otherwise, just type:
 ```
 Samples_names <- data@ind.names
 pop <- t(data.frame(str_split(Samples_names, "_", n=2)))
@@ -107,7 +116,7 @@ data@pop <- as.factor(Pop_ID)
 
 ### First look
 
-First, let's look how our data looks like. This is the first step when analysing a genomic dataset. Genomic datasets are quite large and therefore it is a bit difficult ("humanly impossible") to check each data row one by one, by hand. That's why we write scripts and use functions, so we can automate the checks and the analysis. 
+First, let's look how our data looks like. This is the first step when analysing a genomic dataset. Genomic datasets are quite large and therefore it is a bit difficult ("humanly impossible") to check each data row one by one, by hand. That's why we write scripts and use functions, so we can automate the checks and the analysis. It reduces errors (we are humans!) and assures reproducibility.
 
 By typing the name where we store the dataset (see earlier commands),
 ```
@@ -134,6 +143,10 @@ it will show us several lines of information, to summarize all the dataset. Basi
 ```
 What does all this mean? The first row is telling us that the data file is a genlight object, and inside we can find 232 rows of genotypes (so 232 individuals with genotype data). Each of the 232 individuals have genotypes from 21499 SNPs, from which there is an average of 1.26% of missing data. The optional content (introduced by "@") correspond to another additional matrix with further information about the SNPs or the individuals.
 
+Please spend a few minutes familiarizing yourself with the information in each entry of the dataset. You can do that by using the command
+```
+head(data@loc.names)
+```
 The dataset we are working on consists on 232 individuals sampled from 23 populations all over Europe, Japan and Canada. You can have a look at the specific information of the populations [here](pop_info.txt)
 
 ### Filtering our dataset
@@ -152,9 +165,12 @@ It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). Afte
 
 We will then visualize the plot with this:
 ```
-pca_oysters <- fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
+jpeg(filename = "/Results/PCA_oysters",
+     width = 480, height = 480, units = "px", pointsize = 12,
+     quality = 75)
+fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
                      legend.title ="Populations",mean.point=F,pointsize=3, title="PCA - oysters")
-                     
+dev.off()
 ```
 How do you see the distribution of populations in the plot: are all populations clustered together in the same area, or some are further appart? How many clusters do you see in this oyster population? Discuss among your peers.
 
