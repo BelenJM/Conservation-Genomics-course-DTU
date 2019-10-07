@@ -41,7 +41,7 @@ That's it.
 The flat oyster 
 
 
-
+![](map_Fig1.jpg)
 ## Analysis
 
 ### R: the programming language for today
