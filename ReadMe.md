@@ -10,6 +10,87 @@ Wednesday 09/10/2019
 
 Slides can be found [here](https://github.com/belenjm/).
 
+## Practical 1: The impact of micro-evolutionary processes in the history of populations
+
+For this part you do not need to access the cluster, just the webpage:
+https://www.radford.edu/~rsheehy/Gen_flash/popgen/
+Make sure you have FLASH installed in your web browser
+
+Starting conditions of a hypothetical population – these do not change throughout the exercise:
+*Population Size: 500
+*Number of generations: 100
+*Number of populations: 3
+*Starting frequency of allele A1: 0.75
+Do a screen shot of your simulations every time you change conditions
+
+# 1. Start the simulations with only the starting conditions, and answer the following questions:
+*Does any allele reach fixation? If so, in what population? And how many generations did it take?
+- Give a rough estimate of the frequencies of the alleles A1 and A2 at the end of: 
+	i) 100 generations
+	ii) 200 generations (just click continue)
+- How did the allelic frequencies change from the starting condition? Compare with your colleagues.
+- What are the evolutionary mechanisms at play? 
+
+2. Add migration to the starting conditions:
+2.1. Add 5 migrants (m=0.01), and answer the following questions:
+- Does any allele reach fixation? If so, in what population? And how many generations did it take?
+- Give a rough estimate of the frequencies of the alleles A1 and A2 at the end of: 
+	i) 100 generations
+	ii) 200 generations (just click continue)
+- How does it compare with the frequencies estimated without migration, in question 1?
+- What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
+2.2. Change migration rate to 25 migrants (m=0.05)
+- What are the main differences?
+
+3. Remove migration (m=0), but introduce fitness effects:
+3.1. The heterozygotes are highly disadvantageous (selection against the heterozygotes): 
+A1A1 = 1
+A1A2 = 0.05
+A2A2 = 1
+- Does any allele reach fixation? If so, in what population? And how many generations did it take?
+- What happens if the heterozygotes are only moderately disadvantageous (A1A2 = 0.85)?
+3.2. The alternative allele (A2) confers a fitness advantage:
+A1A1 = 0.75
+A1A2 = 0.85
+A2A2 = 1
+- Does any allele reach fixation? If so, in what population? And how many generations did it take?
+3.3. How do the two scenarios compare after 100 generations?
+3.4 What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
+
+4. Remove fitness effects (all = 1), but introduce a change in the mutation rate of one of the alleles:
+A1 => A2 = 0.05
+- Describe the effects of changing the mutation rate. Is it the same in all populations? Compare with your colleagues.
+- How many generations until one of the alleles is lost?
+- What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
+
+5. Remove mutation rates, and add a bottleneck effect:
+5.1. Simulate a bottleneck that lasted 25 generations, and led to the population dropping from 500 individuals to 300 (Start generation = 50, End generation = 75, Bottleneck size = 300):
+- Does any allele reach fixation? If so, in what population? And how many generations did it take?
+- How do the allelic frequencies behave? Describe the rough frequencies at:
+	i) 100 generations
+	ii) 200 generations
+	iii) 300 generations
+5.2. Simulate a bottleneck that lasted 100 generations, and led to the population dropping from 500 individuals to 150 (Start generation = 50, End generation = 150, Bottleneck size = 150):
+- Does any allele reach fixation? If so, in what population? And how many generations did it take?
+- How do the allelic frequencies behave? Describe the rough frequencies at:
+	i) 100 generations
+	ii) 200 generations
+	iii) 300 generations
+5.3. Compare the results with your colleagues? Are they all the same?
+5.4 What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
+
+6. Now, let’s add multiple forces at the same time!
+6.1. The fitness of allele A1 is higher (A1A1 = 1; A1A2 = 0.95; A2A2=0.90), and there is little migration (m=0.005)
+6.2. The fitness of allele A1 is higher (A1A1 = 1; A1A2 = 0.95; A2A2=0.90), and there is large migration (m=0.1)
+- Describe what happens in each case at:
+i) 100 generations
+ii) 200 generations
+- Is it the same for your colleagues? Compare and discuss
+- How do the frequencies change between 6.1. and 6.2.?
+- What are the evolutionary mechanisms at play? Compare with your colleagues and explain how they would work.
+
+
+## Practical 2:
 The data for practicals has been already downloaded and it is provided in '/home/EXERCICES/lecture6'.
 These instructions, including all relevant files and scripts, can be found at '/home/EXERCISES/lecture6'.
 In short, you don't have to worry about anything for the practicals.
@@ -225,10 +306,17 @@ jpeg(filename = "hist_Hs.JPEG",
      width = 600, height = 600, units="px", pointsize=12, quality=300)
 hist(stats$Hs, breaks=300)
 dev.off()
+```
 
-# statistical test
+What are the main differences between the observed and expected Heterozygosity? What do you think are the causes? 
+Do you remember what Fis measures? What is the most represented Fis class? Why do you think that is?
+
+Let's test if the differences between observed and expected Heterozygosity are significantly different from 0. To do this we can use a t-test:
+```
 t.test(stats$Hs, stats$Ho, pair=T, var.equal = TRUE, alternative = "greater")
 ```
+What does this mean?
+
 
 ### Degree of differentiation (Fst)
 
