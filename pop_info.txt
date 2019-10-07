@@ -1,0 +1,26 @@
+Bangor	UK	Hatchery
+BC	Canada	Wild
+Brest	France	Wild
+Cantambria	Spain	Wild
+Faro	Portugal	Wild
+FrHat1	France	Hatchery
+FrHat2	France	Hatchery
+FrHat3	France	Hatchery
+FrHat4	France	Hatchery
+Gothenburgh	Sweden	Wild
+Guernsey	UK	Hatchery
+Ifremar	France	Hatchery
+Italy	Italy	Wild
+Japan	Japan	Wild
+Ldk	Denmark	Wild
+Maldon	UK	Hatchery
+Norway	Norway	Wild
+Oban	UK	Hatchery
+Oosterschelde	Netherlands	Wild
+Plymouth	UK	Wild
+SeaSalter	UK	Hatchery
+Sylt	Germany	Wild
+Texel	Netherlands	Wild	
+
+
+
