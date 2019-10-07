@@ -24,7 +24,7 @@ Starting conditions of a hypothetical population – these do not change through
 Do a screen shot of your simulations every time you change conditions
 
 ### 1. Start the simulations with only the starting conditions, and answer the following questions:
-*Does any allele reach fixation? If so, in what population? And how many generations did it take?
+- Does any allele reach fixation? If so, in what population? And how many generations did it take?
 - Give a rough estimate of the frequencies of the alleles A1 and A2 at the end of: 
 	i) 100 generations
 	ii) 200 generations (just click continue)
