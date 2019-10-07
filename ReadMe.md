@@ -104,20 +104,18 @@ ii) 200 generations
 
 
 ## Practical 2: applying genomic tools to the study of an oyster population
-The data for practicals has been already downloaded and it is provided in '/home/EXERCICES/lecture6'.
-These instructions, including all relevant files and scripts, can be found at '/home/EXERCISES/lecture6'.
-In short, you don't have to worry about anything for the practicals.
+For this part you require the use of Computerome cluster (you are already familiar with it). The data for practicals has been already downloaded and it is provided in '/home/franb/EXERCICES/LECTURE06/'.
+If R is not working in the cluster, we have a plan B so you don't have to worry about anything for the practicals. If this is the case, see here for a short manual on instructions how to set up R and Rstudio in your laptop.
 
 ### Data
 
 As an illustration, we will use a VCF file from the flat oyster, published in a recent article: Detailed insights into pan-European population structure and inbreeding in wild and hatchery Pacific oyster (Crassostrea gigas) populations revealed by genome-wide SNP data by [Vendrami et al. (2018)](https://onlinelibrary.wiley.com/doi/full/10.1111/eva.12736).
-We extracted the PED files from the [article's repository](https://datadryad.org/stash/dataset/doi:10.5061/dryad.6d778b6.), and transformed it into a VCF file.
-The oyster data represents a SNP-chip from variation all over the genome.
+We extracted the PED files from the [article's repository](https://datadryad.org/stash/dataset/doi:10.5061/dryad.6d778b6.), and we have already transformed it into a VCF file.
+The oyster data that we present here represents variation data from all over the genome generated with a SNP-chip. We will apply the tools we have seen throughout the lecture to this dataset to obtain insights for conservation/management in this population.
 
 ## Preparation
 
-We'll be making some exercises on this dataset to study how we can give some insights for conservation/management in this population.
-However, before doing anything else, please create a folder where you will put all the results and some temporary data.
+First, create a folder where you will put all the results and some temporary data.
 ```
 mkdir LECTURE06
 cd LECTURE06
@@ -128,7 +126,6 @@ You can make a copy of the dataset by using the following command in the termina
 ```
 cp /home/franb/EXERCICES/LECTURE06/* LECTURE06/Data/.
 ```
-That's it.
 
 ## Case study
 
