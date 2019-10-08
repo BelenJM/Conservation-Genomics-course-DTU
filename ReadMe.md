@@ -124,7 +124,7 @@ mkdir Data
 ```
 You can make a copy of the dataset by using the following command in the terminal, from your directory.
 ```
-cp /home/franb/EXERCICES/LECTURE06/* LECTURE06/Data/.
+cp /home/EXERCICES/LECTURE06/* LECTURE06/Data/.
 ```
 
 ## Case study
