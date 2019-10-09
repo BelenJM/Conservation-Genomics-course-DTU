@@ -273,11 +273,11 @@ It will take a few minutes to run (~21000 SNPs are a lot of SNPs/columns!). Afte
 
 We will then visualize the plot with this:
 ```
-jpeg(filename = "PCA_oysters.JPEG",
-     width = 600, height = 600, units="px", pointsize=12, quality=300)
+#jpeg(filename = "PCA_oysters.JPEG",
+#     width = 600, height = 600, units="px", pointsize=12, quality=300)
 fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
                      legend.title ="Populations",mean.point=F,pointsize=3, title="PCA - oysters")
-dev.off()
+#dev.off()
 ```
 How do you see the distribution of populations in the plot: are all populations clustered together in the same area, or some are further appart? How many clusters do you see in this oyster population? Discuss among your peers.
 
@@ -287,10 +287,10 @@ pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
 selection_criteria_PC1_1 <- loadingplot(pca_genlight, axis=1)
 
 # to save and see the plot:
-jpeg(filename = "oysters_loadingPlot.JPEG",
-     width = 600, height = 600, units="px", pointsize=12, quality=300)
+#jpeg(filename = "oysters_loadingPlot.JPEG",
+#     width = 600, height = 600, units="px", pointsize=12, quality=300)
 selection_criteria_PC1_1
-dev.off()
+#dev.off()
 ```
 At a first glance in your opinion, is there any special loci that seem to be driving the differentiation? 
 
@@ -300,10 +300,10 @@ selection_criteria_PCA_99 <- quantile(selection_criteria_PC1_1$var.values, 0.99)
 loci_contribPC1_99 <- loadingplot(pca_genlight, threshold=selection_criteria_PCA_99, lab.jitter=1, axis=1)
 
 # to save and see the plot
-jpeg(filename = "oysters_loadingPlot_1percent.JPEG",
-     width = 600, height = 600, units="px", pointsize=12, quality=300)
+#jpeg(filename = "oysters_loadingPlot_1percent.JPEG",
+#     width = 600, height = 600, units="px", pointsize=12, quality=300)
 loci_contribPC1_99
-dev.off()
+#dev.off()
 ```
 And we can explore the indexes of those SNPs by looking into the recently created "loci_contribPC1_99", by looking inside the dataset:
 ```
@@ -319,20 +319,20 @@ We will calculate observed and expected Heterozygosity levels for the entire dat
 stats <- gl.basic.stats(data, digits = 4)
 
 # plots:
-jpeg(filename = "hist_Fis.JPEG",
-     width = 600, height = 600, units="px", pointsize=12, quality=300)
+#jpeg(filename = "hist_Fis.JPEG",
+#     width = 600, height = 600, units="px", pointsize=12, quality=300)
 hist(stats$Fis, breaks=300)
-dev.off()
+#dev.off()
 
-jpeg(filename = "hist_Ho.JPEG",
-     width = 600, height = 600, units="px", pointsize=12, quality=300)
+#jpeg(filename = "hist_Ho.JPEG",
+#     width = 600, height = 600, units="px", pointsize=12, quality=300)
 hist(stats$Ho, breaks=300)
-dev.off()
+#dev.off()
 
-jpeg(filename = "hist_Hs.JPEG",
-     width = 600, height = 600, units="px", pointsize=12, quality=300)
+#jpeg(filename = "hist_Hs.JPEG",
+#     width = 600, height = 600, units="px", pointsize=12, quality=300)
 hist(stats$Hs, breaks=300)
-dev.off()
+#dev.off()
 ```
 
 What are the main differences between the observed and expected Heterozygosity? What do you think are the causes? 
