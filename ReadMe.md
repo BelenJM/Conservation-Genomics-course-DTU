@@ -126,6 +126,17 @@ You can make a copy of the dataset by using the following command in the termina
 ```
 cp /home/EXERCICES/LECTURE06/* LECTURE06/Data/.
 ```
+We also need to load a few modules in the cluster for R to work:
+```
+module load udunits/2.2.26
+module load intel/redist/2019_update2
+module load intel/perflibs/64
+module load lapack/3.8.0
+module load gcc/8.2.0
+module load proj.4/4.9.3
+module load gdal/2.2.3
+module load R/3.5.0
+```
 
 ## Case study
 
@@ -173,7 +184,7 @@ require("<the package's name>")
 
 ### Packages needed for today's exercises
 
-There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages:
+There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages. If you work in the cluster, you don't have to install the packages, as they are already installed (you only need to load them using require()). If you work from your laptop, you'd need to install them if you don't have them yet.
 ```
 install.packages("vcfR")
 require(vcfR)
