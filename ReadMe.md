@@ -135,7 +135,7 @@ module load lapack/3.8.0
 module load gcc/8.2.0
 module load proj.4/4.9.3
 module load gdal/2.2.3
-module load R/3.5.0
+module load R/3.5.3
 ```
 
 ## Case study
