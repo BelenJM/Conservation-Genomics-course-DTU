@@ -135,7 +135,7 @@ module load lapack/3.8.0
 module load gcc/8.2.0
 module load proj.4/4.9.3
 module load gdal/2.2.3
-module load R/3.5.3
+module load R/4.0.0
 ```
 
 ## Case study
@@ -184,21 +184,21 @@ require("<the package's name>")
 
 ### Packages needed for today's exercises
 
-There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages. If you work in the cluster, you don't have to install the packages, as they are already installed (you only need to load them using require()). If you work from your laptop, you'd need to install them if you don't have them yet.
+There are thousands of helpful R packages for you to use. For the analysis at this lecture, we will be using the following packages. If you work in the cluster, you don't have to install the packages, as they are already installed (you only need to load them using require(), but if you had to install them again, you just uncomment the install.packages() commands). If you work from your laptop, you'd need to install them if you don't have them yet.
 ```
-install.packages("vcfR")
+#install.packages("vcfR")
 require(vcfR)
-install.packages("adegenet")
+#install.packages("adegenet")
 require(adegenet)
-install.packages("dartR")
+#install.packages("dartR")
 require(dartR)
-install.packages("asserthat")
+#install.packages("asserthat")
 require(asserthat)
-install.packages("tidyverse")
+#install.packages("tidyverse")
 require(tidyverse)
-install.packages("devtools")
+#install.packages("devtools")
 require("devtools")
-install_github("kassambara/factoextra")
+#install_github("kassambara/factoextra")
 require("factoextra")
 ```
 
