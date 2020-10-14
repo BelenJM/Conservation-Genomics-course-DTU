@@ -117,14 +117,14 @@ The oyster data that we present here represents variation data from all over the
 
 First, create a folder where you will put the data and the results generated in each of the exercises.
 ```
-mkdir LECTURE06
-cd LECTURE06
+mkdir LECTURE07
+cd LECTURE07
 mkdir Results
 mkdir Data
 ```
 You can make a copy of the dataset by using the following command in the terminal, from your directory.
 ```
-cp /home/EXERCICES/LECTURE06/* LECTURE06/Data/.
+cp /home/LECTURE_07/* LECTURE07/Data/.
 ```
 We also need to load a few modules in the cluster for R to work:
 ```
@@ -206,7 +206,7 @@ require("factoextra")
 
 There are many ways to load a dataset in R. Because the file type is a VCF file, we'll use the vcfR package we just downloaded and loaded. To do this, we will introduce the path where you copied the dataset to your folder.
 ```
-vcf <- read.vcfR("LECTURE06/Data/test_vcf.vcf")
+vcf <- read.vcfR("LECTURE_07/Data/test_vcf.vcf")
 ```
 We will convert it to a special format to analyse large genomic datasets, a "genlight" and "genind" objects. As a first step we just have to type:
 ```
@@ -282,14 +282,18 @@ fviz_pca_ind(pca.adeg_pca,label="none",habillage=data@pop,
 How do you see the distribution of populations in the plot: are all populations clustered together in the same area, or some are further appart? How many clusters do you see in this oyster population? Discuss among your peers.
 
 Which loci seem to be driving the differenciation in the PCA? For looking into this, we can make a loading analysis.
+The first command will take several minutes, go and take a cup of coffee!
 ```
 pca_genlight <- adegenet::glPca(data,nf = 100) # 5 axes selected
+```
+And now the loading plot:
+```
 selection_criteria_PC1_1 <- loadingplot(pca_genlight, axis=1)
 
 # to save and see the plot:
 #jpeg(filename = "oysters_loadingPlot.JPEG",
 #     width = 600, height = 600, units="px", pointsize=12, quality=300)
-selection_criteria_PC1_1
+#selection_criteria_PC1_1
 #dev.off()
 ```
 At a first glance in your opinion, is there any special loci that seem to be driving the differentiation? 
@@ -347,7 +351,7 @@ What does this mean?
 
 ### Degree of differentiation (Fst)
 
-We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. Let's first select a few populations to get familiar with Fst comparisons. Let's take the wild populations of Portugal and Plymouth (UK), and a hatchery population from UK (Maldon).
+We will now have a look at the measure of genetic differentiation between the populations. We will measure this by calculating the Fst. For this, we'll make use of the package dartR. Let's first select a few populations to get familiar with Fst comparisons. Let's take the wild populations of Faro (Portugal) and Plymouth (UK), and the hatchery population, Maldon (UK).
 ```
 exer1 <- dartR::gl.keep.pop(data, c("Plymouth","Maldon","Faro"), recalc = TRUE, mono.rm = TRUE, v = 2)
 ```
@@ -366,7 +370,7 @@ exer2_fst <- dartR::gl.fst.pop(exer2,nboots = 1000)
 exer2_fst$Fsts
 exer2_fst$Pvalues
 ```
-What genetic processes could have made that these populations are different from each other?
+Are the results statistically significant? What genetic processes could have made that these populations are different from each other?
 
 
 As a final exercise at home, try with the whole dataset, where you will test each population with the rest of the dataset. First, think of what you would expect to find: which populations in your opinion should have the highest Fst between each other? And which ones have the lowest? Discuss with your peers.
