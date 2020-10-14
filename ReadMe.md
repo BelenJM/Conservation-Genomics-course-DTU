@@ -1,5 +1,5 @@
 # 25334 Genomic methods in breeding and management of aquatic living resources. 
-## Lecture 6: Introduction to Population Genetics & tools for conservation and management
+## Lecture 07: Introduction to Population Genetics & tools for conservation and management
 ### Teachers: Romina Henriques & Belen Jimenez-Mena
 #### Date: Wednesday 21/10/2020
 
